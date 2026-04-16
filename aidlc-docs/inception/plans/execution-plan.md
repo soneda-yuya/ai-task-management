@@ -30,9 +30,9 @@
 
 | コンポーネント | 種別 | 主な責務 |
 |---|---|---|
-| Web Frontend | 新規 | Next.js + カンバン UI + AI 実行進捗 + 監査ログ表示 |
-| Core API (Go) | 新規 | タスク CRUD、認証(抽象層)、GitHub 連携、AI 実行オーケストレーション |
-| AI Agent Service (Python) | 新規 | Claude Agent SDK による Issue/PR 生成、リスク評価サブエージェント |
+| Web Frontend | 新規 | Next.js + カンバン UI + **アイデア対話 UI / タスク提案プレビュー** + AI 実行進捗 + 監査ログ表示 |
+| Core API (Go) | 新規 | タスク CRUD、**対話セッション管理 / ドラフトタスク永続化**、認証(抽象層)、GitHub 連携、AI 実行オーケストレーション |
+| AI Agent Service (Python) | 新規 | Claude Agent SDK による **アイデア対話・深掘り質問生成・タスク提案生成**、Issue/PR 生成、リスク評価サブエージェント |
 | Data Layer | 新規 | Cloud SQL (PostgreSQL)、Memorystore (Redis)、Cloud Storage |
 | GitHub App | 新規 | Webhook 受信、API 操作、権限管理 |
 | Infrastructure (Terraform) | 新規 | GCP リソース(Cloud Run, Cloud SQL, Pub/Sub, Secret Manager, Cloud Monitoring)+ Vercel プロジェクト |

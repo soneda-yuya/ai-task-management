@@ -28,7 +28,7 @@
 - [x] Workspace Detection
 - [-] Reverse Engineering (N/A — greenfield)
 - [x] Requirements Analysis (approved)
-- [ ] User Stories (Part 1 — awaiting answers)
+- [x] User Stories (awaiting approval)
 - [ ] Workflow Planning
 - [ ] Application Design
 - [ ] Units Generation

@@ -4,7 +4,7 @@
 - **Project Name**: AI Task Manager (仮称)
 - **Project Type**: Greenfield
 - **Start Date**: 2026-04-16T14:31:26Z
-- **Current Stage**: INCEPTION - Requirements Analysis
+- **Current Stage**: INCEPTION - Workflow Planning (awaiting approval)
 
 ## Workspace State
 - **Existing Code**: No
@@ -28,14 +28,18 @@
 - [x] Workspace Detection
 - [-] Reverse Engineering (N/A — greenfield)
 - [x] Requirements Analysis (approved)
-- [x] User Stories (awaiting approval)
-- [ ] Workflow Planning
-- [ ] Application Design
-- [ ] Units Generation
+- [x] User Stories (approved)
+- [x] Workflow Planning (awaiting approval)
+- [ ] Application Design — EXECUTE
+- [ ] Units Generation — EXECUTE
 
-### 🟢 CONSTRUCTION PHASE
-- [ ] Per-Unit Loop (Functional Design / NFR Requirements / NFR Design / Infrastructure Design / Code Generation)
-- [ ] Build and Test
+### 🟢 CONSTRUCTION PHASE (per unit)
+- [ ] Functional Design — EXECUTE
+- [ ] NFR Requirements — EXECUTE
+- [ ] NFR Design — EXECUTE
+- [ ] Infrastructure Design — EXECUTE
+- [ ] Code Generation — EXECUTE (ALWAYS)
+- [ ] Build and Test — EXECUTE (ALWAYS)
 
 ### 🟡 OPERATIONS PHASE
 - [ ] Operations (Placeholder)

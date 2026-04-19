@@ -4,7 +4,8 @@
 - **Project Name**: AI Task Manager (仮称)
 - **Project Type**: Greenfield
 - **Start Date**: 2026-04-16T14:31:26Z
-- **Current Stage**: INCEPTION - Workflow Planning (awaiting approval)
+- **Current Stage**: INCEPTION - Application Design (awaiting approval — PAUSED at 2026-04-17 for user review)
+- **Resume Instructions**: 次回セッション再開時、このファイルと audit.md を読み込み、Application Design の 5 成果物([aidlc-docs/inception/application-design/](../aidlc-docs/inception/application-design/))のレビューから再開すること
 
 ## Workspace State
 - **Existing Code**: No
@@ -29,8 +30,8 @@
 - [-] Reverse Engineering (N/A — greenfield)
 - [x] Requirements Analysis (approved)
 - [x] User Stories (approved)
-- [x] Workflow Planning (awaiting approval)
-- [ ] Application Design — EXECUTE
+- [x] Workflow Planning (approved)
+- [x] Application Design (awaiting approval)
 - [ ] Units Generation — EXECUTE
 
 ### 🟢 CONSTRUCTION PHASE (per unit)

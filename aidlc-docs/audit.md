@@ -171,3 +171,57 @@ aidc-ruleに沿って要件を定義し、設計を行い、タスクを行う�
 **Context**: Workflow Planning — Step 9 approval gate.
 
 ---
+
+## Workflow Planning — Change Requested (Scope Gap Identified)
+
+**Timestamp**: 2026-04-17T00:00:00Z
+**User Input**: "AIDC-workflowでは疑問に思ったことを途中で質問しても良いのですか" → "どのフェーズのことかわからなくなってしまったのですが、要求としては、ユーザーが入力したアイデアややりたいことからタスクを想定する想定なのですが、想定されていますか" → "Option A / 1 分解のスタイル: AI が質問しながら深掘り する / 2.確定フロー: ユーザーが編集・承認してから正式タスク化"
+**AI Response**: "Identified gap: 'idea → interactive AI drill-down → hierarchical task proposal → user edit/approve' was not captured in requirements.md or stories.md. User chose Option A (go back to Requirements Analysis, add requirement and stories). Added FR-T-10 to requirements.md (Must priority), updated Project Vision section and non-technical summary. Added US-1.11 (Idea → AI dialogue drill-down) and US-1.12 (Edit/approve AI-proposed tasks) to stories.md Epic 1 Task Management, updated traceability map. Updated personas.md Epic-persona map. Updated execution-plan.md component impact table to reflect new dialogue UI, session management, and AI dialogue/proposal capabilities. Workflow Planning approval gate remains active for re-approval with updated scope."
+**Context**: Scope addition mid-Workflow-Planning approval gate. Re-present approval with updated artifacts.
+
+---
+
+## Workflow Planning — Approval Received (Post-Update)
+
+**Timestamp**: 2026-04-17T00:00:00Z
+**User Input**: "✅ 承認して次へ"
+**AI Response**: "Workflow Planning approved with updated scope (FR-T-10, US-1.11/12 added). Transitioning to Application Design."
+**Context**: Workflow Planning complete.
+
+---
+
+## Application Design — Part 1 Planning Initiated
+
+**Timestamp**: 2026-04-17T00:00:00Z
+**User Input**: (N/A — AI action)
+**AI Response**: "Created aidlc-docs/inception/plans/application-design-plan.md with 8 questions (AD1–AD8) covering: component granularity, FE structure, FE↔BE API style, Core↔AI Agent communication, long-running async pattern, progress notification to FE, error handling/retry, auth abstraction strategy. Part 2 generation steps AG1–AG8 to produce components.md, component-methods.md, services.md, component-dependency.md, application-design.md. GATE active awaiting user answers."
+**Context**: Application Design — Steps 1-7 per inception/application-design.md.
+
+---
+
+## Application Design — Answers Received + Artifacts Generated
+
+**Timestamp**: 2026-04-17T00:00:00Z
+**User Input**: AD1 [B], AD2 [A], AD3 [A + Buf Connect for strict typing], AD4 [C Pub/Sub + REST hybrid], AD5 [A Pub/Sub + Cloud Run Jobs], AD6 [B SSE], AD7 [A exponential backoff + circuit breaker], AD8 [A Interface + Middleware]. Note: user initially submitted with unsaved answers, clarified and re-saved all 8.
+**AI Response**: "All 8 answers unambiguous. Notable refinement: AD3+Buf Connect drives AD4 toward Protobuf-based contracts for consistency. Generated 5 files in aidlc-docs/inception/application-design/: (1) components.md — 10 domain components C-1..C-10 mapped to 4 physical services (Web FE, Core API, AI Agent Service, GitHub App); (2) component-methods.md — interface signatures in pseudo Go/TS for each component; (3) services.md — 9 services + 5 major use-case flows (manual task creation, idea→task dialogue, task→issue→PR→merge, GitHub webhook sync, audit query); (4) component-dependency.md — dependency matrix (DAG, no cycles), communication patterns table, 3 data flow diagrams, physical package layout; (5) application-design.md — consolidated summary with architecture overview diagram and handoff to Units Generation with 8 candidate units (U-A..U-H). Feature-sliced FE structure documented. Marked all AG1–AG8 checkboxes complete."
+**Context**: Application Design — Step 10 artifact generation per inception/application-design.md.
+
+---
+
+## Application Design — Approval Prompt
+
+**Timestamp**: 2026-04-17T00:00:00Z
+**User Input**: (pending)
+**AI Response**: "Presenting completion message per application-design.md Step 12. Awaiting approval to proceed to Units Generation."
+**Context**: Application Design — Step 13 approval gate.
+
+---
+
+## Session Paused
+
+**Timestamp**: 2026-04-17T00:00:00Z
+**User Input**: "内容を確認したいので、今日は承認せずに終わり明日。"
+**AI Response**: "Session paused at Application Design approval gate. User will review artifacts (5 files under aidlc-docs/inception/application-design/) and resume in a later session. Updated aidlc-state.md with resume instructions pointing to the Application Design review."
+**Context**: Mid-workflow pause. No stage completed or advanced. All artifacts and state preserved.
+
+---

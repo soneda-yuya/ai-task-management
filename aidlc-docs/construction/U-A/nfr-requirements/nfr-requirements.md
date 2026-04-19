@@ -98,13 +98,19 @@ U-A Infrastructure の非機能要求を、プロジェクト全体の NFR(requi
 - **付与方針**: 各シークレットに専用の IAM バインディング、必要な SA だけに `secretAccessor` 権限
 
 #### UA-N-S-03: Least Privilege SA
-| SA 名 | 付与ロール | 用途 |
-|---|---|---|
-| `atm-core-api@` | `roles/cloudsql.client`, `roles/secretmanager.secretAccessor`(限定)、`roles/pubsub.publisher` | Core API (Cloud Run) |
-| `atm-ai-agent@` | `roles/run.invoker`(Cloud Run Jobs), `roles/pubsub.subscriber`, `roles/storage.objectUser`(中間生成物), `roles/secretmanager.secretAccessor`(限定) | AI Agent |
-| `atm-terraform@` | 各リソース管理に必要なロール(別途 IAM 設計で詳細) | Terraform 実行 |
-| `atm-monitoring@` | `roles/monitoring.viewer` | ダッシュボード閲覧 |
-| `atm-ci-deploy@` | `roles/run.developer`, `roles/iam.serviceAccountUser` | GitHub Actions デプロイ |
+
+ランタイム用 SA と デプロイ用 SA を明確に分離(deploy SA はサービスごとに発行、詳細配置は tech-stack-decisions.md Section 2.3.7 参照):
+
+| SA 名 | 種別 | 配置モジュール | 付与ロール(主要) | 用途 |
+|---|---|---|---|---|
+| `atm-core-api@` | ランタイム | core-api | `roles/cloudsql.client`, `roles/secretmanager.secretAccessor`(限定), `roles/pubsub.publisher` | Core API(Cloud Run)実行 |
+| `atm-ai-agent@` | ランタイム | ai-agent | `roles/run.invoker`(Cloud Run Jobs), `roles/pubsub.subscriber`, `roles/storage.objectUser`(中間生成物), `roles/secretmanager.secretAccessor`(限定) | AI Agent(Cloud Run / Jobs)実行 |
+| `atm-terraform@` | CI(横断) | shared | Custom Role(最小化された admin 権限) | Terraform plan/apply(infra.yml) |
+| `atm-deploy-core-api@` | CI(service 別) | core-api | `roles/run.developer`(対象 Cloud Run のみ), `roles/iam.serviceAccountUser`(`atm-core-api@` のみ) | Core API のデプロイ(core-api.yml) |
+| `atm-deploy-ai-agent@` | CI(service 別) | ai-agent | 同上(対象 Cloud Run + Jobs、`atm-ai-agent@` の impersonate) | AI Agent のデプロイ(ai-agent.yml) |
+| `atm-monitoring@`(任意) | 閲覧 | shared | `roles/monitoring.viewer` | 監視ダッシュボード閲覧 |
+
+**WIF bindings**: GitHub Actions からの OIDC token は `attribute.workflow` 属性で workflow 名に紐付け、それ以外の workflow からは impersonate 不可とする(詳細は tech-stack-decisions.md Section 2.3.7)。
 
 ### 3.4 監視 (UA-N-M-*)
 

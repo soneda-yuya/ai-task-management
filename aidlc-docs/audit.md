@@ -322,3 +322,30 @@ aidc-ruleに沿って要件を定義し、設計を行い、タスクを行う�
 **Context**: U-A NFR Requirements — Steps 1-4 per construction/nfr-requirements.md.
 
 ---
+
+## CONSTRUCTION U-A — tech-stack-decisions.md Section 2.3 revised (post-approval)
+
+**Timestamp**: 2026-04-19T13:00:00Z
+**User Input**: "resource単位でmodule化するのはよくないと思ってます" → "serviceごとにmodule化した方が良いと思ってます。例えば core-api / frontend / ai-agent / etc" → "secretsは共通基盤で定義するが、サービス内で使用していることをわかるようにしたいです" → "そう考えるとserviceのmodule内で定義した方が良くないですか" → "sharedというディレクトリの中にsecrets.tf, database.tf, network.tfのような形で行きたいです。serviceのmodule内も同じです" → "Yes"
+**AI Response**: "User flagged resource-level modularization as anti-pattern in the previously approved tech-stack-decisions.md Section 2.3. Discussed 3 alternatives (logical-domain / flat-in-envs / hybrid), user chose service-per-module with vertical slices. Discussed secret placement: classified secrets into Type A (service-specific, e.g. DB password, session key) which go in service modules, and Type B (shared external identity, e.g. GitHub App key, Anthropic API key) which are defined in shared module but bound (IAM + Cloud Run env ref) in service modules. User requested uniform file-by-concern naming within shared/ and each service module (network.tf, database.tf, secrets.tf, messaging.tf, storage.tf, iam.tf, cloud-run.tf, monitoring.tf). Final structure: /infra/modules/{shared, core-api, ai-agent, frontend, github-app}/ + /infra/envs/{dev,prod}/. Single state per env, providers in envs/, modules stateless. Updated Section 2.3 with: 2.3.1 design principles, 2.3.2 directory structure, 2.3.3 file naming table, 2.3.4 responsibility division, 2.3.5 secret consumption typing pattern, 2.3.6 envs composition example. Added 3 rows to Section 5 decision rationale table. NFR Requirements content (19 NFRs) unchanged."
+**Context**: Post-approval scoped revision of tech-stack-decisions.md Section 2.3 only. No re-approval required for NFR Requirements body (nfr-requirements.md untouched).
+
+---
+
+## CONSTRUCTION U-A — tech-stack-decisions.md Section 2.2 & 3.1 revised (state bucket per env)
+
+**Timestamp**: 2026-04-19T13:15:00Z
+**User Input**: "atm-tf-stateはprodに集約じゃなくてそれぞれの環境のstateはそれぞれが持った方が良いです"
+**AI Response**: "Revised Section 2.2 (State Backend): each env now has its own state bucket (atm-tf-state-dev in atm-dev project, atm-tf-state-prod in atm-prod project). Added sub-sections 2.2.1 bucket table, 2.2.2 backend.tf declaration per env, 2.2.3 benefits (blast radius isolation, IAM containment, billing clarity), 2.2.4 state lock, 2.2.5 bootstrap procedure (initial manual gcloud creation to solve chicken-and-egg, then Terraform takes over), 2.2.6 workspace policy (not used, directory-based separation). Revised Section 3.1 (project table): removed atm-shared row and 'state in atm-prod' note, added per-env state placement policy with cross-reference to Section 2.2. nfr-requirements.md body unchanged."
+**Context**: Post-approval scoped revision for state backend architecture.
+
+---
+
+## CONSTRUCTION U-A — CI/CD IAM 配置を明確化
+
+**Timestamp**: 2026-04-19T13:30:00Z
+**User Input**: "githubのcicd用のiamの作成は不要ですか？" → "A"
+**AI Response**: "Clarified CI/CD IAM placement in new service-per-module structure. Chose Option A (shared WIF + per-service deploy SAs). Updates: (1) tech-stack-decisions.md Section 2.3.4 responsibility table — added WIF Pool/Provider + Terraform SA as shared, per-service deploy SAs as service. (2) Added new Section 2.3.7 with concrete Terraform code for WIF Pool/Provider (attribute_condition limiting to soneda-yuya/ai-task-management repo), atm-terraform SA with WIF binding (attribute.workflow/infra), and example service deploy SA (atm-deploy-core-api) with Cloud Run v2 role binding + act-as runtime SA + WIF binding. (3) Restructured Section 4 into 4.1 (U-A deliverables) + 4.2 (U-H implementation responsibilities). (4) Updated nfr-requirements.md UA-N-S-03 SA table — split into runtime vs CI(horizontal) vs CI(per-service), reflects atm-deploy-{core-api,ai-agent} naming, references tech-stack-decisions.md Section 2.3.7 for details. Runtime SAs keep their service-specific privileges (cloudsql.client, pubsub.publisher/subscriber, etc.); deploy SAs limited to Cloud Run reversion update on their owned service only."
+**Context**: Completing the CI/CD IAM design as part of ongoing Section 2.3 revision.
+
+---

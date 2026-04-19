@@ -4,8 +4,7 @@
 - **Project Name**: AI Task Manager (仮称)
 - **Project Type**: Greenfield
 - **Start Date**: 2026-04-16T14:31:26Z
-- **Current Stage**: INCEPTION - Application Design (awaiting approval — PAUSED at 2026-04-17 for user review)
-- **Resume Instructions**: 次回セッション再開時、このファイルと audit.md を読み込み、Application Design の 5 成果物([aidlc-docs/inception/application-design/](../aidlc-docs/inception/application-design/))のレビューから再開すること
+- **Current Stage**: INCEPTION - Units Generation (artifacts generated, awaiting approval)
 
 ## Workspace State
 - **Existing Code**: No
@@ -31,16 +30,19 @@
 - [x] Requirements Analysis (approved)
 - [x] User Stories (approved)
 - [x] Workflow Planning (approved)
-- [x] Application Design (awaiting approval)
-- [ ] Units Generation — EXECUTE
+- [x] Application Design (approved, including ui-design.md)
+- [x] Units Generation (artifacts generated, awaiting approval — 8 units: U-A..U-H)
 
-### 🟢 CONSTRUCTION PHASE (per unit)
-- [ ] Functional Design — EXECUTE
-- [ ] NFR Requirements — EXECUTE
-- [ ] NFR Design — EXECUTE
-- [ ] Infrastructure Design — EXECUTE
-- [ ] Code Generation — EXECUTE (ALWAYS)
-- [ ] Build and Test — EXECUTE (ALWAYS)
+### 🟢 CONSTRUCTION PHASE (per unit, sequence: UW5=A foundation-first)
+- [ ] U-A Infrastructure — per-unit design + code generation
+- [ ] U-B Proto Definitions — per-unit design + code generation
+- [ ] U-H CI/CD + Security + PBT — per-unit design + code generation
+- [ ] U-C Core API (Task + Idea + Auth + Audit) — per-unit design + code generation
+- [ ] U-E AI Agent Service — per-unit design + code generation
+- [ ] U-D Core API (Repo + IssuePR + Job + SSE) — per-unit design + code generation
+- [ ] U-G GitHub App — per-unit design + code generation
+- [ ] U-F Web Frontend — per-unit design + code generation
+- [ ] Build and Test (after all units complete)
 
 ### 🟡 OPERATIONS PHASE
 - [ ] Operations (Placeholder)

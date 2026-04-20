@@ -4,7 +4,7 @@
 - **Project Name**: AI Task Manager (仮称)
 - **Project Type**: Greenfield
 - **Start Date**: 2026-04-16T14:31:26Z
-- **Current Stage**: INCEPTION - Units Generation (artifacts generated, awaiting approval)
+- **Current Stage**: CONSTRUCTION - U-A Infrastructure - NFR Design (Part 1 Planning — awaiting answers)
 
 ## Workspace State
 - **Existing Code**: No
@@ -31,10 +31,15 @@
 - [x] User Stories (approved)
 - [x] Workflow Planning (approved)
 - [x] Application Design (approved, including ui-design.md)
-- [x] Units Generation (artifacts generated, awaiting approval — 8 units: U-A..U-H)
+- [x] Units Generation (approved — 8 units: U-A..U-H)
 
 ### 🟢 CONSTRUCTION PHASE (per unit, sequence: UW5=A foundation-first)
-- [ ] U-A Infrastructure — per-unit design + code generation
+- [ ] U-A Infrastructure — per-unit design + code generation (IN PROGRESS)
+  - [-] Functional Design (SKIPPED — no business logic)
+  - [ ] NFR Requirements (awaiting answers)
+  - [ ] NFR Design
+  - [ ] Infrastructure Design
+  - [ ] Code Generation (Plan + Generate)
 - [ ] U-B Proto Definitions — per-unit design + code generation
 - [ ] U-H CI/CD + Security + PBT — per-unit design + code generation
 - [ ] U-C Core API (Task + Idea + Auth + Audit) — per-unit design + code generation

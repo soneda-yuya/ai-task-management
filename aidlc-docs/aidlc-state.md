@@ -4,7 +4,7 @@
 - **Project Name**: AI Task Manager (仮称)
 - **Project Type**: Greenfield
 - **Start Date**: 2026-04-16T14:31:26Z
-- **Current Stage**: CONSTRUCTION - U-A Infrastructure - NFR Design (Part 1 Planning — awaiting answers)
+- **Current Stage**: CONSTRUCTION - U-A Infrastructure - NFR Design (artifacts generated, awaiting approval)
 
 ## Workspace State
 - **Existing Code**: No
